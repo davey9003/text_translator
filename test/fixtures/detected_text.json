@@ -1,0 +1,18 @@
+{
+  "fullText": "Sample detected text",
+  "blocks": [
+    {
+      "text": "Sample",
+      "boundingBox": {
+        "left": 10.0,
+        "top": 20.0,
+        "width": 100.0,
+        "height": 30.0
+      },
+      "confidence": 0.95
+    }
+  ],
+  "detectedAt": "2024-01-01T00:00:00.000Z"
+}
+
+

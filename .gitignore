@@ -1,0 +1,89 @@
+# Dart / Flutter generated files
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+**/doc/api/
+/coverage/
+/test_coverage/
+
+# Generated Dart source (build_runner)
+*.g.dart
+*.freezed.dart
+
+# Flutter platform build outputs
+/android/.gradle/
+/android/app/debug/
+/android/app/profile/
+/android/app/release/
+/ios/Flutter/.last_build_id
+/ios/Flutter/ephemeral/
+/ios/Flutter/Generated.xcconfig
+/ios/Flutter/flutter_export_environment.sh
+/ios/ServiceDefinitions.json
+/ios/Runner/GeneratedPluginRegistrant.*
+/ios/Pods/
+/ios/.symlinks/
+/ios/build/
+/macos/Pods/
+/macos/Flutter/ephemeral/
+/macos/Flutter/GeneratedPluginRegistrant.swift
+/macos/build/
+/windows/flutter/ephemeral/
+/windows/flutter/generated_plugin_registrant.cc
+/windows/flutter/generated_plugin_registrant.h
+/windows/flutter/generated_plugins.cmake
+/windows/build/
+/linux/flutter/ephemeral/
+/linux/flutter/generated_plugin_registrant.cc
+/linux/flutter/generated_plugin_registrant.h
+/linux/flutter/generated_plugins.cmake
+/linux/build/
+
+# Android / Gradle machine-specific files and outputs
+local.properties
+*.hprof
+*.jks
+*.keystore
+key.properties
+
+# Xcode user state and build products
+**/xcuserdata/
+*.xcuserstate
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+DerivedData/
+
+# IDE and editor state
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.fleet/
+
+# OS and temporary files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.tmp
+*.temp
+*.log
+*.class
+*.pyc
+*.lockb
+
+# Local secrets and environment-specific configuration
+.env
+.env.*
+!.env.example
+!.env.template
+
+# Crash / obfuscation outputs
+app.*.symbols
+app.*.map.json
