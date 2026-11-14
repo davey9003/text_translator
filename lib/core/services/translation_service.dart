@@ -24,9 +24,9 @@ class TranslationServiceImpl implements TranslationService {
   TranslationServiceImpl({
     required TranslationModelService modelService,
     LanguageIdentifier? languageIdentifier,
-  })  : _modelService = modelService,
-        _languageIdentifier = languageIdentifier ??
-            LanguageIdentifier(confidenceThreshold: 0.5);
+  }) : _modelService = modelService,
+       _languageIdentifier =
+           languageIdentifier ?? LanguageIdentifier(confidenceThreshold: 0.5);
 
   @override
   Future<String> translate({
@@ -85,7 +85,10 @@ class TranslationServiceImpl implements TranslationService {
     }
   }
 
-  Future<String> _resolveSourceLanguage(String text, String sourceLanguage) async {
+  Future<String> _resolveSourceLanguage(
+    String text,
+    String sourceLanguage,
+  ) async {
     final normalized = SupportedLanguages.normalizeCode(sourceLanguage);
     if (normalized == 'auto' || normalized.isEmpty) {
       return detectLanguage(text);
@@ -128,19 +131,25 @@ class TranslationServiceImpl implements TranslationService {
 
   @override
   Future<String> detectLanguage(String text) async {
-    try {
-      if (text.trim().isEmpty) {
-        return 'en';
-      }
+    if (text.trim().isEmpty) {
+      throw const TranslationException(
+        'Cannot detect the language of empty text.',
+      );
+    }
 
+    try {
       final identified = await _languageIdentifier.identifyLanguage(text);
       final normalized = SupportedLanguages.normalizeCode(identified);
       if (normalized == 'und' || !SupportedLanguages.isSupported(normalized)) {
-        return 'en';
+        throw const TranslationException(
+          'Could not identify a supported language. Choose the source language manually.',
+        );
       }
       return normalized;
-    } catch (_) {
-      return 'en';
+    } on AppException {
+      rethrow;
+    } catch (e) {
+      throw TranslationException('Language detection failed: $e');
     }
   }
 

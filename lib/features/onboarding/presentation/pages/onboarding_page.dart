@@ -1,21 +1,11 @@
 import 'package:flutter/material.dart';
 
-class OnboardingPage extends StatefulWidget {
+import '../../../translation/presentation/pages/language_models_page.dart';
+
+class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
 
   @override
-  State<OnboardingPage> createState() => _OnboardingPageState();
+  Widget build(BuildContext context) =>
+      const LanguageModelsPage(initialSetup: true);
 }
-
-class _OnboardingPageState extends State<OnboardingPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: const Center(
-        child: Text('Onboarding Page'),
-      ),
-    );
-  }
-}
-
-

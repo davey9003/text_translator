@@ -1,35 +1,34 @@
+import 'package:flutter/foundation.dart';
 import '../../config/app_config.dart';
 
 class Logger {
   static void debug(String message) {
     if (AppConfig.enableLogging) {
-      print('[DEBUG] $message');
+      debugPrint('[DEBUG] $message');
     }
   }
-  
+
   static void info(String message) {
     if (AppConfig.enableLogging) {
-      print('[INFO] $message');
+      debugPrint('[INFO] $message');
     }
   }
-  
+
   static void warning(String message) {
     if (AppConfig.enableLogging) {
-      print('[WARNING] $message');
+      debugPrint('[WARNING] $message');
     }
   }
-  
+
   static void error(String message, [dynamic error, StackTrace? stackTrace]) {
     if (AppConfig.enableLogging) {
-      print('[ERROR] $message');
+      debugPrint('[ERROR] $message');
       if (error != null) {
-        print('Error: $error');
+        debugPrint('Error: $error');
       }
       if (stackTrace != null) {
-        print('StackTrace: $stackTrace');
+        debugPrint('StackTrace: $stackTrace');
       }
     }
   }
 }
-
-

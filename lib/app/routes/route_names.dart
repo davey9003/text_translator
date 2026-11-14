@@ -7,8 +7,7 @@ class RouteNames {
   static const String translationDetail = '/translation-detail';
   static const String settings = '/settings';
   static const String languagePreferences = '/language-preferences';
+  static const String languageModels = '/language-models';
   static const String about = '/about';
   static const String permissionRequest = '/permission-request';
 }
-
-

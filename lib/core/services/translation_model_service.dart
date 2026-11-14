@@ -13,7 +13,7 @@ class TranslationModelServiceImpl implements TranslationModelService {
   final OnDeviceTranslatorModelManager _modelManager;
 
   TranslationModelServiceImpl({OnDeviceTranslatorModelManager? modelManager})
-      : _modelManager = modelManager ?? OnDeviceTranslatorModelManager();
+    : _modelManager = modelManager ?? OnDeviceTranslatorModelManager();
 
   @override
   Future<bool> isDownloaded(String languageCode) async {
@@ -52,16 +52,21 @@ class TranslationModelServiceImpl implements TranslationModelService {
     if (!SupportedLanguages.isSupported(code)) {
       throw TranslationException('Unsupported language: $languageCode');
     }
-    await _modelManager.deleteModel(code);
+    final deleted = await _modelManager.deleteModel(code);
+    if (!deleted) {
+      throw TranslationException(
+        'Failed to delete the ${SupportedLanguages.displayName(code)} model.',
+      );
+    }
   }
 
   @override
   Future<Map<String, bool>> statusFor(Iterable<String> languageCodes) async {
-    final statuses = <String, bool>{};
-    for (final code in languageCodes) {
-      final normalized = SupportedLanguages.normalizeCode(code);
-      statuses[normalized] = await isDownloaded(normalized);
-    }
-    return statuses;
+    final codes = languageCodes
+        .map(SupportedLanguages.normalizeCode)
+        .toSet()
+        .toList();
+    final downloaded = await Future.wait(codes.map(isDownloaded));
+    return Map.fromIterables(codes, downloaded);
   }
 }
